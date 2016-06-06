@@ -9,7 +9,7 @@ module PuppetX
       class IppResult
         def initialize(request, resource = '/')
           @output, @error, process = query(resource, request)
-          raise('Unexpected response from CUPS server.') if process.exitstatus != 0
+          raise("Unexpected response from CUPS server.\nresource:#{resource}\nrequest:\n#{request}\nSTDOUT:\n#{@output}\nSTDERR:\n#{@error}") if process.exitstatus != 0
         end
 
         def lines
